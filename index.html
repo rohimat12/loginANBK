@@ -258,6 +258,7 @@
 
 // Fungsi untuk melakukan login
 function loginUser() {
+
     var username = $('#username').val();
     var password = $('#password').val();
 
@@ -268,6 +269,7 @@ function loginUser() {
     $.get(firebaseUrl, function(data) {
         // Periksa apakah data pengguna ada di Firebase
         if (data) {
+			$('#loader').fadeIn();
             var users = Object.values(data);
             var authenticatedUser = users.find(function(user) {
                 return user.username === username && user.password === password;
@@ -290,6 +292,7 @@ function loginUser() {
             // Tidak ada data pengguna di Firebase
             alert('Data pengguna tidak ditemukan.');
         }
+		$('#loader').fadeOut();
     });
 }
 
