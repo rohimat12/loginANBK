@@ -1,0 +1,388 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Simulasi AKM</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="apple-touch-icon" sizes="180x180" href="https://pusmendik.kemdikbud.go.id/an/fav/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="https://pusmendik.kemdikbud.go.id/an/fav/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="https://pusmendik.kemdikbud.go.id/an/fav/favicon-16x16.png">
+	<link rel="manifest" href="https://pusmendik.kemdikbud.go.id/an/fav/site.webmanifest">
+	<link rel="mask-icon" href="https://pusmendik.kemdikbud.go.id/an/fav/safari-pinned-tab.svg">
+	<meta name="msapplication-TileColor" content="#da532c">
+	<meta name="theme-color" content="#ffffff">
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="container-fluid text-white" style="background:#326698;background-size: contain;background-image: url('https://pusmendik.kemdikbud.go.id/an/images/bg-top.png');background-repeat: no-repeat;background-position: left; height:150px;position:fixed;top:0px;left:0px;right:0px">
+	  <div class="row">
+		<div class="col pl-5 pt-1">
+			<table>
+				<tr>
+					<td>
+						<img style="margin:5px;height:70px" src="https://pusmendik.kemdikbud.go.id/an/images/logo-kemdikbud-71x72.png">
+					</td>
+					<td>
+						<div><b>PUSMENDIK</b></div>
+						<div><small>APLIKASI ANBK<small></div>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div class="col pl-5 pt-1 mt-4 pr-5 text-right">
+			<table align="right">
+				<tr>
+					<td style="vertical-align:top">
+						<div id="data-user"><small>P130100230 - Peserta 01<small></div>
+					</td>
+					<td>
+						<div class="pl-1 pr-1 pt-1 pb-1" style="background:#74b9ff;border-radius:2px;color:#326698"><i class="fa fa-graduation-cap fa-flip-horizontal"></i></div>
+					</td>
+				</tr>
+			</table>
+		</div>
+	  </div>
+</div>
+
+<div class="container-fluid fadeInDown pl-5 pr-5 mb-5" style="margin-top:100px;">
+  <div class="row">
+	<div class="col-sm-8" >
+		<div class="text-left pl-5 pt-3 pb-5 mb-2" id="formContent" style="background-size: 300px;background-image: url('https://pusmendik.kemdikbud.go.id/an/images/logo-w.png');background-repeat: no-repeat;background-position: top right; ">
+		  <div> <span class="mr-3" id="token">Token : DOXBWE</span> <button class="btn btn-primary btn-round btn-sm" onClick="refreshToken();">Refresh</button></div>
+		</div>
+	</div>
+	<div class="col-sm-4" >
+		<div class="fadeIn text-left pl-5 pt-3 pb-5 pr-5" id="formContent" style="background-size: 300px;background-image: url('https://pusmendik.kemdikbud.go.id/an/images/logo-w.png');background-repeat: no-repeat;background-position: top right; ">
+		  <div style="font-size:26px">Konfirmasi data Peserta</div>
+		  <form class="text-left" action="" method="post" id="formKonfirmasi">
+				<div class="mt-1">
+					<label class="m-0 p-0"><small style="font-size:10px"><b>Kode NIK</b></small></label> <input type="text" id="idUser" class="w-100 m-0 p-0" placeholder="1356718273" readonly="true" value="P130100230">
+				</div>
+				<div class="mt-1">
+					<label class="m-0 p-0"><small style="font-size:10px"><b>Nama Peserta</b></small></label> <input type="text" id="name" class="w-100 m-0 p-0" placeholder="Peserta 01" value="P130100230 - Peserta 01" readonly="true">
+				</div>
+				<div class="mt-1">
+					<label class="m-0 p-0"><small style="font-size:10px"><b>Jenis Kelamin</b></small></label> 
+					
+					<select class="form-control jenis_kelamin" id="jenis_kelamin" name="jenis_kelamin" >
+							<option value="L">Laki-Laki</option>
+							<option value="P">Perempuan</option>
+						</select>
+				</div>
+				<div class="mt-1">
+					<label class="m-0 p-0"><small style="font-size:10px"><b>Mata Ujian</b></small></label> <input type="text" class="w-100 m-0 p-0" value="Literasi - SD/MI/PAKET A" readonly="true">
+				</div>
+				<div class="mt-1">
+					<label class="m-0 p-0"><small style="font-size:10px"><b>Nama Peserta</b></small></label> <input type="text" class="w-100 m-0 p-0" placeholder="Ketikkan Nama Peserta" required="true" name="nama_peserta" id="nama_peserta">
+				</div>
+				<div class="mt-1">
+					<label class="m-0 p-0"><small style="font-size:10px"><b>Tanggal Lahir</b></small></label> 
+					  <div class="input-group mb-3">
+						<select class="form-control" id="tgl" name="tgl" style="background-color:#eee;border:0px;margin-right:4px;border-radius:0px">
+							<option value="">Hari</option>
+							<option value="01">01</option><option value="02">02</option><option value="03">03</option><option value="04">04</option><option value="05">05</option><option value="06">06</option><option value="07">07</option><option value="08">08</option><option value="09">09</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option><option value="31">31</option>						</select>
+						<select class="form-control" id="bulan" name="bulan" style="background-color:#eee;border:0px;margin-right:4px;border-radius:0px">
+							<option value="">Bulan</option>
+							<option value="01">Januari</option><option value="02">Februari</option><option value="03">Maret</option><option value="04">April</option><option value="05">Mei</option><option value="06">Juni</option><option value="07">Juli</option><option value="08">Agustus</option><option value="09">September</option><option value="10">Oktober</option><option value="11">November</option><option value="12">Desember</option>						</select>
+						<select class="form-control" id="tahun" name="tahun" style="background-color:#eee;border:0px;margin-right:4px;border-radius:0px">
+							<option value="">Tahun</option>
+							<option value="1990">1990</option><option value="1991">1991</option><option value="1992">1992</option><option value="1993">1993</option><option value="1994">1994</option><option value="1995">1995</option><option value="1996">1996</option><option value="1997">1997</option><option value="1998">1998</option><option value="1999">1999</option><option value="2000">2000</option><option value="2001">2001</option><option value="2002">2002</option><option value="2003">2003</option><option value="2004">2004</option><option value="2005">2005</option><option value="2006">2006</option><option value="2007">2007</option><option value="2008">2008</option><option value="2009">2009</option><option value="2010">2010</option><option value="2011">2011</option><option value="2012">2012</option><option value="2013">2013</option><option value="2014">2014</option><option value="2015">2015</option><option value="2016">2016</option><option value="2017">2017</option>						</select>	
+					  </div>
+				</div>
+				<div class="mt-1">
+					<label class="m-0 p-0 text-primary"><small style="font-size:10px"><b>Token</b></small></label> 
+					<input type="text" class="w-100 m-0 p-0" placeholder="Ketikkan token di sini"  id="input-token" name="token" required="true">
+				</div>
+			  <button type="button" class="btn btn-primary btn-round form-control mt-5" onClick="konfirmasiData()" id="btnSubmit">Submit</button>
+			</form> 
+		</div>
+    </div>
+	 
+  </div> 
+</div>
+
+<div  style="position:absolute;top:0px;left:0px;right:0px;bottom:0px;background:#fff;opacity:0.5;z-index:99999;display:none" id="loader">
+<img class="loader" src="https://pusmendik.kemdikbud.go.id/an/_assets/images/loader2.gif">
+</div>
+
+<style>
+
+	
+	/* STRUCTURE */
+	.loader {
+	  margin: 0;
+	  position: absolute;
+	  top: 50%;
+	  left: 50%;
+	  -ms-transform: translate(-50%, -50%);
+	  transform: translate(-50%, -50%);
+	}
+	
+	.wrapper {
+	  display: flex;
+	  align-items: center;
+	  flex-direction: column; 
+	  justify-content: center;
+	  width: 100%;
+	  min-height: 100%;
+	  padding: 20px;
+	  margin-top:-80px;
+	}
+
+	#formContent {
+	  -webkit-border-radius: 10px 10px 10px 10px;
+	  border-radius: 10px 10px 10px 10px;
+	  background: #fff;
+	  position: relative;
+	  -webkit-box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
+	  box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
+	  text-align: center;
+	}
+
+	
+
+
+	/* TABS */
+
+	h2.inactive {
+	  color: #cccccc;
+	}
+
+	h2.active {
+	  color: #0d0d0d;
+	  border-bottom: 2px solid #5fbae9;
+	}
+	
+	input[type=text] {
+	  border: none;
+	  color: #0d0d0d;
+	  text-decoration: none;
+	  border-radius:0px;
+	  border-bottom:1px solid #eee;
+	  background:transparent;
+	}
+	
+	.jenis_kelamin {
+	  border: none;
+	  color: #0d0d0d;
+	  text-decoration: none;
+	  border-radius:0px;
+	  border-bottom:1px solid #eee;
+	  background:transparent;
+	  padding-left:0px;
+	}
+	
+
+	/* ANIMATIONS */
+
+	/* Simple CSS3 Fade-in-down Animation */
+	.fadeInDown {
+	  -webkit-animation-name: fadeInDown;
+	  animation-name: fadeInDown;
+	  -webkit-animation-duration: 1s;
+	  animation-duration: 1s;
+	  -webkit-animation-fill-mode: both;
+	  animation-fill-mode: both;
+	}
+
+	@-webkit-keyframes fadeInDown {
+	  0% {
+		opacity: 0;
+		-webkit-transform: translate3d(0, -100%, 0);
+		transform: translate3d(0, -100%, 0);
+	  }
+	  100% {
+		opacity: 1;
+		-webkit-transform: none;
+		transform: none;
+	  }
+	}
+
+	@keyframes fadeInDown {
+	  0% {
+		opacity: 0;
+		-webkit-transform: translate3d(0, -100%, 0);
+		transform: translate3d(0, -100%, 0);
+	  }
+	  100% {
+		opacity: 1;
+		-webkit-transform: none;
+		transform: none;
+	  }
+	}
+
+	/* Simple CSS3 Fade-in Animation */
+	@-webkit-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+	@-moz-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+	@keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+
+	.fadeIn {
+	  opacity:0;
+	  -webkit-animation:fadeIn ease-in 1;
+	  -moz-animation:fadeIn ease-in 1;
+	  animation:fadeIn ease-in 1;
+
+	  -webkit-animation-fill-mode:forwards;
+	  -moz-animation-fill-mode:forwards;
+	  animation-fill-mode:forwards;
+
+	  -webkit-animation-duration:1s;
+	  -moz-animation-duration:1s;
+	  animation-duration:1s;
+	}
+
+	.fadeIn.first {
+	  -webkit-animation-delay: 0.4s;
+	  -moz-animation-delay: 0.4s;
+	  animation-delay: 0.4s;
+	}
+
+	.fadeIn.second {
+	  -webkit-animation-delay: 0.6s;
+	  -moz-animation-delay: 0.6s;
+	  animation-delay: 0.6s;
+	}
+
+	.fadeIn.third {
+	  -webkit-animation-delay: 0.8s;
+	  -moz-animation-delay: 0.8s;
+	  animation-delay: 0.8s;
+	}
+
+	.fadeIn.fourth {
+	  -webkit-animation-delay: 1s;
+	  -moz-animation-delay: 1s;
+	  animation-delay: 1s;
+	}
+
+	/* Simple CSS3 Fade-in Animation */
+	.underlineHover:after {
+	  display: block;
+	  left: 0;
+	  bottom: -10px;
+	  width: 0;
+	  height: 2px;
+	  background-color: #56baed;
+	  content: "";
+	  transition: width 0.2s;
+	}
+
+	.underlineHover:hover {
+	  color: #0d0d0d;
+	}
+
+	.underlineHover:hover:after{
+	  width: 100%;
+	}
+</style>
+
+<script type="text/javascript" src="https://pusmendik.kemdikbud.go.id/an/_assets/js/jquery/jquery.min.js"></script>
+
+<script>
+
+        // Ambil nama pengguna dari session storage
+    var username = sessionStorage.getItem('username');
+    var name = sessionStorage.getItem('name');
+
+    // Tampilkan nama pengguna di elemen dengan id "user-name" atau elemen lainnya sesuai kebutuhan
+    if (username) {
+        $('#data-user').html(username+'-'+name);
+        $('#idUser').val(username);
+        $('#name').val(name);
+    } else {
+        // Tidak ada nama pengguna yang ditemukan di session storage
+        // Lakukan tindakan sesuai kebutuhan, seperti mengarahkan kembali ke halaman login
+    }
+
+	
+	function konfirmasiData() {
+		
+		if ($('#nama_peserta').val() == '') {
+			alert('Silahkan ketikkan nama !');
+			$('#nama_peserta').focus();
+		} else  if (($('#tgl').val() == '') || ($('#bulan').val() == '') || $('#tahun').val() == '') {
+			alert('Silahkan masukkan tanggal lahir !');
+		} else  if ($('#input-token').val() == '') {
+			alert('Silahkan ketikkan token !');
+			$('#input-token').focus();
+		} else {
+			// $.ajax({ 
+			//    type: "POST",
+			//    dataType: "html",
+			//    data : $('#formKonfirmasi').serialize(),
+			//    url: "https://pusmendik.kemdikbud.go.id/an/simulasi_akm/verifikasidata?ses_id=3e4e092033ab4ab7370cfb5342bce815b2fa3fb3",
+			//    cache: false, 
+			//    beforeSend: function(){
+			// 	  $('#loader').fadeIn();
+			// 		$('#btnSubmit').html('Silahkan tunggu ... !');
+			// 	   $('#btnSubmit').prop('disabled',true);;
+			// 	},
+			// 	complete: function(){
+			// 	},
+			// 	success: function(result){
+			// 		if (result=='Token Salah !') {
+			// 			alert(result);
+			// 			$('#loader').fadeOut();
+			// 			$('#btnSubmit').html('Submit');
+			// 			$('#btnSubmit').prop('disabled',false);;
+			// 			$('#btnSubmit').prop('enabled',true);;
+			// 		}
+			// 		else
+			// 			window.location = result;
+			// 		//$('#token').html('Token : '+result);
+			//    }
+			// });
+			var firebaseUrl = "https://anbk-fa55d-default-rtdb.firebaseio.com/users.json";
+			// Mendapatkan nilai yang dipilih dari elemen select dengan id "tgl"
+			var hari = $('#tgl').val();
+
+			// Mendapatkan nilai yang dipilih dari elemen select dengan id "bulan"
+			var bulan = $('#bulan').val();
+
+			// Mendapatkan nilai yang dipilih dari elemen select dengan id "tahun"
+			var tahun = $('#tahun').val();
+			
+			var tanggalLahir = hari+"/"+bulan+"/"+tahun;
+
+			var dataName = $('#nama_peserta').val();
+		
+
+
+			// Lakukan GET request ke URL Firebase
+			$.get(firebaseUrl, function(data) {
+				// Periksa apakah data pengguna ada di Firebase
+				$('#loader').fadeIn();
+				if (data) {
+					var users = Object.values(data);
+					var authenticatedUser = users.find(function(user) {
+						return user.name === dataName && user.tglLahir === tanggalLahir;
+					});
+
+					if (authenticatedUser) {
+						
+						alert('Data sudah benar silahkan gantian loginnya');
+						window.location.href = 'index.html';
+					} else {
+						// Username atau password salah, berikan pesan kesalahan
+						alert('nama atau tanggal lahir salah cek kembali datanya');
+					}
+				} else {
+					// Tidak ada data pengguna di Firebase
+					alert('nama atau tanggal lahir tidak ditemukan cek kembali datanya');
+				}
+			});
+		}
+	}
+</script>
+  
+
+</body>
+</html>
